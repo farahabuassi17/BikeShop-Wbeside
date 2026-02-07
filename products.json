@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Discover 2 Step-Thru",
+    "category": "Premium Sets",
+    "price": 768,
+    "oldPrice": 980,
+    "sale": true,
+    "salePercent": 22,
+    "image": "img/bike-pr10-300x196.png"
+  },
+  {
+    "id": 2,
+    "name": "Folding Electric Bike",
+    "category": "Exclusive",
+    "price": 1270,
+    "sale": false,
+    "image": "img/bike-pr11-300x196.png"
+  },
+  {
+    "id": 3,
+    "name": "High Timber 24in",
+    "category": "Cannondale",
+    "price": 790,
+    "sale": false,
+    "image": "img/bike-pr9.png"
+  },
+  {
+    "id": 4,
+    "name": "Hybrid Electric Bike",
+    "category": "Bianchi",
+    "price": 999,
+    "sale": false,
+    "image": "img/bike-pr8-300x196.png"
+  },
+  {
+    "id": 5,
+    "name": "Parkwood Electric Bike",
+    "category": "Cannondale",
+    "price": 980,
+    "sale": false,
+    "image": "img/bike-pr7-300x196.png"
+  },
+  {
+    "id": 6,
+    "name": "Pro Bike Vortex",
+    "category": "Cannondale",
+    "price": 768,
+    "sale": false,
+    "image": "img/bike-pr6-300x196.png"
+  },
+  {
+    "id": 7,
+    "name": "Special Roar Bike CE",
+    "category": "Cannondale",
+    "price": 675,
+    "sale": false,
+    "image": "img/bike-pr3-300x196.png"
+  },
+  {
+    "id": 8,
+    "name": "Vega CE Low-Step",
+    "category": "Cannondale",
+    "price": 805,
+    "sale": false,
+    "image": "img/bike-p3-600x392.png"
+  }
+]

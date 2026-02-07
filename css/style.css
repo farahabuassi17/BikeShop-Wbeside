@@ -1,0 +1,1542 @@
+:root {
+  /*  Colors */
+  --color-black: #0f0f0f;
+  --color-dark: #1c1c1c;
+  --color-white: #ffffff;
+  --color-gray: #cccccc9c;
+  --color-orange: #ff7a00;
+  --color-orange-dark: #e66b00;
+  --color-green: #2ecc71;
+
+  /* Typography */
+  --font-main: "Segoe UI", sans-serif;
+  --font-size-base: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 42px;
+
+  /* Spacing */
+  --section-padding: 80px;
+  --radius-sm: 6px;
+  --radius-lg: 30px;
+
+  /* shadows */
+  --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 15px 40px rgba(0, 0, 0, 0.35);
+
+  /*  Transitions */
+  --transition-fast: 0.3s ease;
+}
+/* Text selection color */
+::selection {
+  background-color: #ff7a00; /* البرتقالي */
+  color: #000; /* لون النص */
+}
+
+/* Firefox */
+::-moz-selection {
+  background-color: #ff7a00;
+  color: #000;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  background: var(--color-black);
+  color: var(--color-gray);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+.container {
+  max-width: 1200px; /* أو 1320px إذا حابة */
+}
+
+/* Top Header */
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: var(--color-dark);
+  font-size: 14px;
+  z-index: 3000;
+}
+
+.top-header-inner {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+/* Left */
+.top-header-logo {
+  flex: 0 0 auto;
+}
+
+/* Center */
+.top-header-text {
+  flex: 1;
+  text-align: center;
+  color: #ccc;
+}
+
+/* Right */
+.top-header-btn {
+  flex: 0 0 auto;
+  font-size: 13px;
+  padding: 6px 14px;
+}
+.main-header {
+  position: fixed;
+  top: 65px;
+  margin-bottom: 30px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+  transition:
+    background 0.4s ease,
+    backdrop-filter 0.4s ease;
+
+  background: transparent;
+  padding: 18px 0;
+}
+/* لما يصير Scroll */
+.main-header.scrolled {
+  background: rgba(30, 30, 30, 0.6); /* رمادي شفاف */
+  backdrop-filter: blur(10px);
+}
+
+.navbar .nav-link {
+  color: #ccc;
+  font-weight: 500;
+  position: relative;
+}
+
+.navbar .nav-link:hover {
+  color: #fff;
+}
+.navbar .nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -8px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--color-orange);
+}
+.navbar .nav-link:hover::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -8px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--color-orange);
+}
+.navbar-toggler {
+  border: none;
+  color: var(--color-orange) !important;
+}
+.dropdown-custom {
+  position: relative;
+}
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.arrow-icon {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+/* عند hover السهم يطلع لفوق */
+.dropdown-custom:hover .arrow-icon {
+  transform: rotate(180deg);
+}
+.dropdown-box {
+  position: absolute;
+  top: 140%;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+  z-index: 1000;
+}
+
+.dropdown-custom:hover .dropdown-box {
+  opacity: 1;
+  visibility: visible;
+}
+.dropdown-column {
+  background: var(--color-orange);
+  padding: 22px 28px;
+  border-radius: 18px;
+  min-width: 220px;
+}
+
+.dropdown-column a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.dropdown-column a:hover {
+  color: var(--color-dark);
+  opacity: 0.85;
+}
+.first-column {
+  position: relative;
+}
+
+.first-column::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 40px;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid var(--color-orange);
+}
+.inner-hover {
+  position: relative;
+}
+
+.nested-dropdown {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 40px);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+  transform: translateX(-8px);
+}
+
+/* hover داخلي */
+.inner-hover:hover .nested-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+.inner-hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -14px;
+  width: 14px;
+  height: 100%;
+}
+.burger-menu {
+  display: none; /* مخفي افتراضيًا */
+}
+
+/* أيقونة البرغر */
+.burger-menu i {
+  color: var(--color-white);
+  font-size: 35px;
+}
+.burger-menu:hover {
+  background: var(--color-white);
+}
+.burger-menu i:hover {
+  color: var(--color-orange);
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 44px;
+  right: -100%;
+  width: 300px;
+  height: 100vh;
+  background-image: url(../img/mune.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  z-index: 2000;
+  transition: right 0.35s ease;
+  padding: 20px;
+}
+
+/* طبقة شفافة فوق الصورة */
+.mobile-menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* غيري القيمة حسب الذوق */
+  z-index: 0;
+}
+
+/* خلي المحتوى فوق الطبقة */
+.mobile-menu * {
+  position: relative;
+  z-index: 1;
+}
+.mobile-menu.active {
+  right: 0;
+}
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.close-menu {
+  font-size: 26px;
+  cursor: pointer;
+}
+.mobile-nav {
+  list-style: none;
+  padding: 0;
+}
+
+.mobile-nav li {
+  margin-bottom: 20px;
+}
+
+.mobile-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+.mobile-nav a:hover {
+  color: var(--color-orange);
+}
+
+@media (max-width: 992px) {
+  /* إخفاء المنيو العادي */
+  .navbar-nav,
+  .header-actions {
+    display: none !important;
+  }
+
+  /* إظهار البرغر */
+  .burger-menu {
+    width: 50px;
+    height: 50px;
+    background: var(--color-orange);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .top-header .container {
+    width: 100%;
+    font-size: 11px;
+  }
+}
+@media (max-width: 776px) {
+  .top-header .container .btn {
+    font-size: 9px;
+  }
+}
+
+.btn-warning {
+  background: var(--color-orange);
+  border: none;
+}
+
+.btn-warning:hover {
+  background: var(--color-white);
+  color: var(--color-orange);
+}
+.btn i.bi-bicycle {
+  font-size: 15px;
+}
+.icon-box {
+  position: relative;
+  color: var(--color-white);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.icon-box i {
+  font-size: 22px;
+}
+.icon-box i:hover {
+  color: var(--color-orange);
+  font-size: 22px;
+}
+
+.badge-count {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: var(--color-orange);
+  color: #fff;
+  font-size: 11px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+/* ! hero section */
+.hero {
+  position: relative;
+  min-height: 100%;
+  padding: 150px 0;
+  margin: 10px;
+  margin-top: 20px;
+  background: var(--color-black);
+  overflow: visible;
+}
+
+/* دوائر سوداء متداخلة */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -190px;
+  background: radial-gradient(
+    circle at 70% 40%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.85) 20%,
+    rgba(255, 255, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.06) 70%
+  );
+  z-index: 0;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* النص */
+.hero-text h1 {
+  color: #fff;
+  font-weight: 800;
+  font-size: 52px;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.hero-text h1 span {
+  color: var(--color-orange);
+}
+
+.hero-text p {
+  color: var(--color-gray);
+  max-width: 480px;
+  margin-bottom: 20px;
+}
+
+.hero-price {
+  color: #fff;
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 22px;
+}
+
+.hero-images {
+  position: relative;
+  height: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+/* صورة الدراجة الكبيرة */
+.hero-bike {
+  position: absolute;
+  top: 80px;
+  left: 8%;
+  width: 85%;
+  max-width: 540px;
+  z-index: 3;
+  perspective: 1000px;
+  overflow: hidden;
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.hero-card {
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 55%;
+  bottom: -200px;
+  width: 70%;
+  overflow: hidden;
+  z-index: 1;
+}
+.hero-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.hero-btn {
+  background: var(--color-orange);
+  color: var(--color-white);
+  border-radius: 17px;
+  font-size: 17px;
+  font-weight: 500;
+}
+.hero-btn:hover {
+  background-color: var(--color-white);
+  color: var(--color-orange);
+}
+@media (max-width: 992px) {
+  .hero {
+    padding: 200px 0;
+  }
+
+  .hero-card {
+    width: 100%;
+    height: 460px;
+  }
+
+  .hero-bike {
+    top: 1%;
+    left: 2%;
+  }
+}
+/* About XTRA Section */
+
+.about-xtra {
+  background: black;
+  padding: 120px 0;
+  position: relative;
+  min-width: 100vh;
+}
+/* صورة الدراجة */
+.about-image img {
+  width: 100%;
+  max-width: 540px;
+  transition: transform 0.25s ease;
+  transform-style: preserve-3d;
+}
+.about-image:hover img {
+  transform: translateY(-12px) scale(1.03);
+}
+
+/* المحتوى */
+.about-content h2 {
+  color: #fff;
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.about-content h2 span {
+  color: var(--color-orange);
+}
+
+.about-content p {
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 520px;
+  margin-bottom: 35px;
+}
+
+/* الليست */
+.features-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 40px;
+}
+
+.features-list div {
+  color: #fff;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* الدائرة البرتقالية */
+.features-list span {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--color-orange);
+  color: var(--color-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.features-list span:hover {
+  background: var(--color-orange);
+  color: var(--color-white);
+}
+@media (max-width: 992px) {
+  .about-xtra {
+    padding-top: 250px;
+  }
+  .about-content h2 {
+    font-size: 33px;
+  }
+}
+/* cta-section*/
+.cta-section {
+  padding: 120px 0;
+  background: black;
+}
+
+.cta-box {
+  background: var(--color-orange);
+  border-radius: 60px;
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.cta-box h2 {
+  color: #fff;
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.cta-box p {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 520px;
+  margin: 0 auto 30px;
+  font-size: 15px;
+}
+
+/* الزر */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+/* السهم */
+.cta-btn .arrow {
+  font-size: 20px;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+/* عند hover */
+.cta-btn:hover .arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+.cta-btn:hover {
+  background-color: var(--color-white);
+  color: var(--color-orange);
+}
+/* Section Background */
+.bestsellers-section {
+  position: relative;
+  padding: 140px 0;
+  text-align: center;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Moving background text */
+.newsletter-moving-text {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.newsletter-moving-text .text-track {
+  white-space: nowrap;
+  font-size: 72px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+  animation: newsletterScroll 5s linear infinite;
+}
+
+/* Animation */
+@keyframes newsletterScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Title */
+.bestsellers-title {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.bestsellers-title span {
+  color: var(--color-orange);
+}
+
+/* Grid Layout */
+.bestsellers-grid {
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* Product Card */
+.product-card {
+  background: #111;
+  width: 250px;
+  height: 300px;
+  border-radius: 0 100px 0 0;
+  padding: 25px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.4s ease;
+}
+
+/* Hover Effect */
+.product-card:hover {
+  transform: translateY(-10px);
+}
+
+/* Bike Image */
+.product-card img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  transition: 0.4s ease;
+}
+
+/* Image Zoom Hover */
+.product-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Product Info */
+.product-info h4 {
+  font-size: 18px;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.product-info p {
+  text-align: left;
+  color: var(--color-gray);
+  font-size: 12px;
+}
+
+/* Price + Button Row */
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Price */
+.price {
+  font-size: 14px;
+  color: var(--color-orange);
+  font-weight: bold;
+}
+
+/* Add Button */
+.add-btn {
+  background: #222;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: var(--color-orange);
+  font-size: 12px;
+  cursor: pointer;
+  background-color: var(--color-white);
+  transition: 0.3s;
+}
+.add-btn i {
+  margin: 0 10px;
+}
+
+/* Button Hover */
+.add-btn:hover {
+  background: var(--color-orange);
+  color: white;
+}
+
+.bestsellers-btn {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* الزر الرئيسي */
+.btn-hover {
+  width: 280px;
+  height: 60px;
+
+  border-radius: 50px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  overflow: hidden;
+
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+  font-size: 15px;
+}
+
+/* كل النصوص */
+.btn-hover .text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  transition: 0.2s ease;
+}
+
+/* النص الأول ظاهر */
+.text1 {
+  color: var(--color-orange);
+  transform: translateX(0);
+  opacity: 1;
+}
+.text1 i {
+  width: 50px;
+  height: 50px;
+  align-content: center;
+  background: var(--color-orange);
+  color: var(--color-black);
+  border-radius: 50%;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* النص الثاني مخفي خارج الزر */
+.text2 {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+/* Hover: النص الأول يخرج */
+.btn-hover:hover .text1 {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* Hover: النص الثاني يدخل من اليسار */
+.btn-hover:hover .text2 {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* الأيقونة حركة خاصة */
+.btn-hover i {
+  font-size: 18px;
+  transition: 0.3s ease;
+}
+
+/* الأيقونة تدخل بسرعة */
+.btn-hover:hover .text2 i {
+  transform: translateX(0);
+  animation: bikeFast 0.2s ease;
+}
+@keyframes bikeFast {
+  0% {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .bestsellers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .bestsellers-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* bike-cards-section*/
+.bike-cards-section {
+  background: #000;
+  padding: 150px 0;
+}
+
+/* Container */
+.bike-cards-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Card */
+.bike-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: visible;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  padding-bottom: 50px;
+  padding: 20px;
+}
+
+/* Image */
+.bike-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  z-index: 0;
+}
+
+/* Content Overlay */
+.bike-card-content {
+  position: absolute;
+  top: 75%;
+  left: 30px;
+  right: 30px;
+
+  background: #42424252;
+  border-radius: 18px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 0 0 20px;
+  z-index: 3;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Text */
+.bike-card-content small {
+  font-size: 14px;
+  color: var(--color-orange);
+  font-weight: 500;
+}
+
+.bike-card-content h3 {
+  font-size: 22px;
+  color: white;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+/* Orange Button */
+.arrow-btn {
+  width: 30px;
+  height: 80px;
+  background: var(--color-orange);
+  border-radius: 0 18px 18px 0px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+
+  transition: 0.3s;
+}
+.arrow-btn i {
+  padding: 0 5px;
+  font-size: 20px;
+}
+
+.arrow-btn:hover {
+  background: var(--color-white);
+  color: var(--color-orange);
+}
+
+/* Hover effect card */
+.bike-card:hover .bike-img {
+  transform: scale(1.06);
+  transition: 0.5s;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .bike-cards-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* testimonials-section*/
+.testimonials-section {
+  background: #000;
+  padding: 120px 0;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+/* أيقونة الاقتباس بالخلف */
+.quote-outline-bg {
+  position: absolute;
+  left: auto;
+  width: 370px;
+  top: 30%;
+  height: auto;
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+  transform: scaleY(-1);
+}
+
+.section-title {
+  position: relative;
+  z-index: 2;
+  font-size: 38px;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+.section-title span {
+  color: #ff7a00;
+}
+.testimonials-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+/* LEFT */
+.testimonials-content {
+  position: relative;
+}
+
+.testimonial-slider {
+  position: relative;
+  max-width: 420px;
+  overflow: hidden;
+  width: 100%;
+}
+.slider-track {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+}
+
+.quote-bg {
+  position: absolute;
+  left: auto;
+  top: 500px;
+  width: 100px;
+  z-index: 3;
+}
+@media (max-width: 768px) {
+  .quote-bg {
+    left: 50px;
+    top: 430px;
+  }
+  .quote-outline-bg {
+    left: auto;
+    width: 370px;
+    top: 15%;
+    height: auto;
+  }
+}
+
+/* Card */
+.testimonial-card {
+  padding: 30px;
+  border-radius: 20px;
+  min-width: 100%;
+  color: #fff;
+}
+
+.testimonial-card.active {
+  display: block;
+}
+
+.user-testimonial {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.user-image {
+  width: 50px;
+  height: 60px;
+  border-radius: 100% 100% 1% 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.user-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.user-image::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  width: 66px;
+  background: var(--color-gray);
+  z-index: -1;
+  transform: skewX(-10deg);
+  border-radius: 100% 100% 1% 100%;
+}
+
+.user-info h5 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.user-info span {
+  font-size: 13px;
+  color: var(--color-orange);
+}
+
+.testimonial-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #ccc;
+}
+.testimonials-right {
+  position: relative;
+}
+/* Arrows */
+.slider-arrows {
+  margin-top: 20px;
+  display: flex;
+  justify-content: end;
+  text-align: end;
+  gap: 10px;
+}
+
+.slider-arrows button {
+  background-color: #000;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--color-gray);
+  border: none;
+  transition: 0.3s;
+}
+.slider-arrows button:hover {
+  color: var(--color-orange);
+}
+
+/* RIGHT IMAGE */
+.bike-image-wrapper {
+  position: relative;
+  display: flex;
+  left: 50px;
+}
+
+.bike-img {
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+}
+
+/* ? Newsletter Section */
+.newsletter-section {
+  position: relative;
+  padding: 140px 0;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Moving background text */
+.newsletter-moving-text {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.newsletter-moving-text .text-track {
+  white-space: nowrap;
+  font-size: 72px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+  animation: newsletterScroll 5s linear infinite;
+}
+
+/* Animation */
+@keyframes newsletterScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Title */
+.newsletter-title {
+  position: relative;
+  z-index: 2;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.newsletter-title span {
+  color: #ff7a00;
+}
+
+/* Subtitle */
+.newsletter-subtitle {
+  position: relative;
+  z-index: 2;
+  color: #aaa;
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+
+/* Form */
+.newsletter-form {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+  margin: 0 auto;
+  background: #141414;
+  border-radius: 40px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.newsletter-form input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 14px 18px;
+  font-size: 14px;
+}
+
+.newsletter-form input::placeholder {
+  color: #777;
+}
+
+/* Button */
+.newsletter-form button {
+  background: var(--color-orange);
+  border: none;
+  color: var(--color-white);
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background: var(--color-white);
+  color: var(--color-orange);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .newsletter-moving-text {
+    display: none;
+  }
+
+  .newsletter-title {
+    font-size: 28px;
+  }
+}
+
+/*footer*/
+.pre-footer {
+  background: #000;
+  padding: 100px 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+.main-footer h6 {
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* الخط البرتقالي تحت العنوان */
+.main-footer h6::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 26px;
+  height: 2px;
+  background: var(--color-orange);
+}
+.pre-footer-box {
+  background: #1a1a1a;
+  border-radius: 60px 60px 0 0;
+  padding: 60px 40px;
+  color: #fff;
+}
+.pre-footer a {
+  text-decoration: none;
+}
+
+.pre-footer small {
+  color: var(--color-orange);
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.pre-footer a h5 {
+  color: var(--color-white);
+  font-weight: 700;
+  align-items: center;
+}
+.pre-footer a h5:hover {
+  color: var(--color-orange);
+}
+
+.main-footer {
+  background: #111;
+  color: #ccc;
+  padding: 140px 0 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.main-footer h6 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/*  Office  */
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #ccc;
+}
+
+.footer-list li i {
+  color: var(--color-orange);
+  font-size: 16px;
+  min-width: 18px;
+}
+
+/*  News  */
+.footer-news {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* صندوق الصورة */
+.news-img {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* الصورة */
+.news-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* الأيقونة */
+.news-icon {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transition: 0.3s ease;
+  transform: scale(0.9);
+}
+
+/* شكل الأيقونة */
+.news-icon i {
+  color: var(--color-orange);
+  font-size: 22px;
+}
+
+/* Hover effect */
+.news-img:hover .news-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.footer-news p {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.footer-news small {
+  font-size: 12px;
+  color: #888;
+}
+
+.footer-news small i {
+  color: var(--color-orange);
+  margin: 0 4px;
+}
+
+/*  Shortcuts  */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #ccc;
+}
+.footer-links a:hover {
+  color: var(--color-orange);
+  transition: 0.3s ease;
+}
+/*  Working Hours  */
+.footer-desc {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 14px;
+}
+
+.working-hours {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.working-hours li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #333;
+}
+
+/*  Footer Bottom  */
+.footer-bottom {
+  border-top: 1px solid #222;
+  margin-top: 50px;
+  padding-top: 20px;
+  font-size: 14px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #888;
+}
+
+.payments img {
+  height: 26px;
+  margin-left: 10px;
+  opacity: 0.9;
+}
+
+/*  Responsive  */
+@media (max-width: 992px) {
+  .pre-footer-box {
+    border-radius: 30px 30px 0 0;
+    text-align: center;
+  }
+  .pre-item:not(:last-child)::after {
+    display: none;
+  }
+
+  .main-footer {
+    margin-top: -30px;
+    padding-top: 100px;
+  }
+
+  .footer-bottom {
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+  }
+}
