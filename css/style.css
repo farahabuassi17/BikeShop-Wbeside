@@ -396,6 +396,7 @@ body {
 }
 /* ! hero section */
 .hero {
+  width: auto;
   position: relative;
   min-height: 100%;
   padding: 150px 0;
@@ -407,6 +408,7 @@ body {
 
 /* دوائر سوداء متداخلة */
 .hero::before {
+  width: auto;
   content: "";
   position: absolute;
   inset: -190px;
@@ -501,7 +503,7 @@ body {
 }
 @media (max-width: 992px) {
   .hero {
-    padding: 200px 0;
+    padding: 150px 0;
   }
 
   .hero-card {
@@ -937,8 +939,12 @@ body {
   object-fit: cover;
   border-radius: 20px;
   z-index: 0;
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
 }
-
+.bike-img:hover {
+  transform: translateY(-10px) scale(1.05);
+}
 /* Content Overlay */
 .bike-card-content {
   position: absolute;

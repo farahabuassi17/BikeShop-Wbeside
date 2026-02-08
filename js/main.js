@@ -27,34 +27,38 @@ closeMenu.addEventListener("click", function () {
   mobileMenu.classList.remove("active");
 });
 // صور
-// ننتظر حتى يتم تحميل الصفحة بالكامل
+// ننتظر تحميل الصفحة
 document.addEventListener("DOMContentLoaded", function () {
-  const imageBox = document.querySelector(".img-hover");
 
-  // فحص: هل العنصر موجود فعلاً؟
-  if (imageBox) {
-    const image = imageBox.querySelector("img");
+  // نجيب كل العناصر الي فيها تأثير الصورة
+  const imageBoxes = document.querySelectorAll(".img-hover");
 
-    if (image) {
-      imageBox.addEventListener("mousemove", (e) => {
-        const rect = imageBox.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+  imageBoxes.forEach((box) => {
+    const image = box.querySelector("img");
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+    if (!image) return;
 
-        const rotateX = ((y - centerY) / centerY) * -10; // زيادة التأثير قليلاً
-        const rotateY = ((x - centerX) / centerX) * 10;
+    box.addEventListener("mousemove", (e) => {
+      const rect = box.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-        image.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-      });
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-      imageBox.addEventListener("mouseleave", () => {
-        image.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-      });
-    }
-  }
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+
+      image.style.transform =
+        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    });
+
+    box.addEventListener("mouseleave", () => {
+      image.style.transform =
+        `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+    });
+  });
+
 });
 // slider
 const track = document.querySelector(".slider-track");
