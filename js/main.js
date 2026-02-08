@@ -1,3 +1,21 @@
+const scrollBtn = document.getElementById("scrollTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollBtn.style.display = "block";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+});
+
+/* عند الضغط يرجع لأعلى */
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
+
 var links = document.querySelectorAll(".nav-link");
 
 links.forEach(function (link) {
@@ -29,7 +47,6 @@ closeMenu.addEventListener("click", function () {
 // صور
 // ننتظر تحميل الصفحة
 document.addEventListener("DOMContentLoaded", function () {
-
   // نجيب كل العناصر الي فيها تأثير الصورة
   const imageBoxes = document.querySelectorAll(".img-hover");
 
@@ -49,16 +66,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const rotateX = ((y - centerY) / centerY) * -10;
       const rotateY = ((x - centerX) / centerX) * 10;
 
-      image.style.transform =
-        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+      image.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
     });
 
     box.addEventListener("mouseleave", () => {
-      image.style.transform =
-        `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+      image.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
     });
   });
-
 });
 // slider
 const track = document.querySelector(".slider-track");
